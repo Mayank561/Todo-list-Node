@@ -1,0 +1,198 @@
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/alltask.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/7692/7692809.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+<body>
+    <div class="nav-container">
+        <div class="nav">
+            <div class="nav-logo-section">
+                <a href=""><img src="https://cdn-icons-png.flaticon.com/512/7692/7692809.png" alt="" class="nav-logo"></a>
+                <a href=""><span class="nav-logo-name">Todos.</span></a>
+            </div>
+            <div class="login-signup-section">
+                <!-- <a href="/login" class="nav-login">Login</a>
+                <a href="/register" class="nav-register">Sign Up</a> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="leftside-nav">
+            <div class="nav-heading">
+                <h5>collection</h5>
+            </div>
+            <ul type="none" class="leftside-nav-ul">
+                <a href="./dashboard">
+                    <li>Pending Tasks</li>
+                </a>
+                <a href="./completedtask">
+                    <li>Completed Tasks</li>
+                </a>
+                <a href="./alltask">
+                    <li class="page-link">All Tasks</li>
+                </a>
+            </ul>
+        </div>
+        <div class="main-section">
+            <div class="page-info">
+                <h5>Dashboard</h5>
+            </div>
+            <div class="upper-section">
+                <div class="greeting-user-section">
+                    <h2 class="greeting-user">--------</h2>
+                    <div>
+                        Here Your All Tasks
+                    </div>
+                </div>
+            </div>
+            <div class="task-info">
+                <div>
+                    <h5>All Tasks</h5>
+                </div>
+                <div class="add-task-button-section">
+                    <button class="add-task-button">Add New Task</button>
+                </div>
+            </div>
+            <div class="bottom-section">
+                <% let totalWork = 0 %>
+                <% let totalPersonal = 0 %>
+                <% let totalShopping = 0 %>
+                <% let totalOther = 0 %>
+
+                <% let completedWork = 0 %>
+                <% let completedPersonal = 0 %>
+                <% let completedShopping = 0 %>
+                <% let completedOther = 0 %>
+
+                <% let total = 0; %>
+                <% let completed = 0; %>
+                <% for (let i of dashboard) { %>
+                    <% total++; %>
+                    <% if (i.completed == true) { %>
+                        <% completed++; %>
+                    <% } %>
+                    <% if (i.categoryChoosed == "work") { %>
+                        <% totalWork++; %>
+                    <% } %>
+                    <% if (i.categoryChoosed == "personal") { %>
+                        <% totalPersonal++; %>
+                    <% } %>
+                    <% if (i.categoryChoosed == "shopping") { %>
+                        <% totalShopping++; %>
+                    <% } %>
+                    <% if (i.categoryChoosed == "others") { %>
+                        <% totalOther++; %>
+                    <% } %>
+                    <% if (i.categoryChoosed == "work" && i.completed == true) { %>
+                        <% completedWork++; %>
+                    <% } %>
+                    <% if (i.categoryChoosed == "personal" && i.completed == true) { %>
+                        <% completedPersonal++; %>
+                    <% } %>
+                    <% if (i.categoryChoosed == "shopping" && i.completed == true) { %>
+                        <% completedShopping++; %>
+                    <% } %>
+                    <% if (i.categoryChoosed == "others" && i.completed == true) { %>
+                        <% completedOther++; %>
+                    <% } %>
+                <% } %>
+                <div class="task-stats-section">
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-tasks task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= total %></h3>
+                            <p class="task-stats-name">Total Tasks</p>
+                        </div>
+                    </div>
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-check-circle task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= completed %></h3>
+                            <p class="task-stats-name">Completed Tasks</p>
+                        </div>
+                    </div>
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-briefcase task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= totalWork %></h3>
+                            <p class="task-stats-name">Work Tasks</p>
+                        </div>
+                    </div>
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-user-friends task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= totalPersonal %></h3>
+                            <p class="task-stats-name">Personal Tasks</p>
+                        </div>
+                    </div>
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-shopping-cart task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= totalShopping %></h3>
+                            <p class="task-stats-name">Shopping Tasks</p>
+                        </div>
+                    </div>
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-ellipsis-h task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= totalOther %></h3>
+                            <p class="task-stats-name">Other Tasks</p>
+                        </div>
+                    </div>
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-check-circle task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= completedWork %></h3>
+                            <p class="task-stats-name">Completed Work Tasks</p>
+                        </div>
+                    </div>
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-check-circle task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= completedPersonal %></h3>
+                            <p class="task-stats-name">Completed Personal Tasks</p>
+                        </div>
+                    </div>
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-check-circle task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= completedShopping %></h3>
+                            <p class="task-stats-name">Completed Shopping Tasks</p>
+                        </div>
+                    </div>
+                    <div class="task-stats-card">
+                        <div class="task-stats-icon-section">
+                            <i class="fas fa-check-circle task-stats-icon"></i>
+                        </div>
+                        <div class="task-stats-text-section">
+                            <h3 class="task-stats-count"><%= completedOther %></h3>
+                            <p class="task-stats-name">Completed Other Tasks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
